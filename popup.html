@@ -1,0 +1,134 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+  <title>crypto compare's Popup</title>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDmyXHPKg4yKXyYcuvzQHO-p_Kxv2UQEq4",
+      authDomain: "crypto-sight.firebaseapp.com",
+      databaseURL: "https://crypto-sight.firebaseio.com",
+      projectId: "crypto-sight",
+      storageBucket: "",
+      messagingSenderId: "244163410198"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <style type="text/css">
+    /* ====== Reset ===== */
+    p {
+      margin: 0;
+    }
+    input {
+      padding: 5px;
+    }
+    /* ====== End Reset ===== */
+
+    body {
+      width: 500px;
+      margin: 10px;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 15px;
+    }
+    
+    .subtle-hr {
+      opacity: 0.5;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #container > section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 10px;
+    }
+
+    .results {
+      margin-left: 20px;
+    }
+
+    .results > div {
+      display: flex;
+      flex-direction: row;
+      padding: 5px 10px;
+    }
+    .results > div > p {
+      margin-right: 10px;
+    }
+  </style>
+  <script src="popup.js"></script>
+</head>
+
+<body>
+  <h1>Crypto Trading Tool</h1>
+  <div id="container">
+    <section id="buyStuff">
+      <div>
+        <input id="buyInput" type="number" placeholder="Buy Price">
+      </div>
+      <div id="breakevens" class="results">
+        <div>
+          <p>Maker Breakeven</p>
+          <span id="makeeven">0</span>
+        </div>
+        <hr class="subtle-hr">
+        <div>
+          <p>Taker Breakeven</p>
+          <span id="takeeven">0</span>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="sellStuff">
+      <div>
+        <input id="sellInput" type="number" placeholder="Sell Price">
+      </div>
+      <div id="profits" class="results">
+        <div>
+          <p>Maker Profit</p>
+          <span id="makeprofit">0</span>
+        </div>
+        <hr class="subtle-hr">
+        <div>
+          <p>Taker Profit</p>
+          <span id="takeprofit">0</span>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="totals">
+      <div>
+        <input id="currentBalance" type="number" placeholder="Current Balance">
+      </div>
+      <div id="totalsResults" class="results">
+        <div>
+          <p>Total Profit</p>
+          <span id="totalprofit">0</span>
+        </div>
+        <hr class="subtle-hr">
+        <div>
+          <p>% Profit</p>
+          <span id="percentprofit">0</span>%
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
