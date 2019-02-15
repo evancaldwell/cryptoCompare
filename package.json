@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "firebase": "^4.9.0"
+    "firebase": "^4.9.0",
+    "node-binance-api": "^0.4.6"
   }
 }

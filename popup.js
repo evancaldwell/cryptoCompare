@@ -2,16 +2,39 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-const binance = require('node-binance-api');
-binance.options({
-	APIKEY: '<key>',
-	APISECRET: '<secret>',
-	useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
-	test: true // If you want to use sandbox mode where orders are simulated
-});
+// const firebase = require("firebase");
+// // Initialize Firebase
+// // TODO: Replace with your project's customized code snippet
+// var config = {
+//   apiKey: "AIzaSyDmyXHPKg4yKXyYcuvzQHO-p_Kxv2UQEq4",
+//   authDomain: "crypto-sight.firebaseapp.com",
+//   databaseURL: "https://crypto-sight.firebaseio.com",
+//   storageBucket: "crypto-sight.appspot.com",
+// };
+// firebase.initializeApp(config);
+
+// const binance = require('node-binance-api');
+// binance.options({
+// 	APIKEY: '<key>',
+// 	APISECRET: '<secret>',
+// 	useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
+// 	test: true // If you want to use sandbox mode where orders are simulated
+// });
 
 const TFEE = 0.001;
 const MFEE = 0.001;
+const initialETH = 8.91186168;
+const initialBTC = 1.02;
+
+
+
+// Intervals: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+// binance.candlesticks("NEOBTC", "5m", (error, ticks, symbol) => {
+// 	console.log("candlesticks()", ticks);
+// 	let last_tick = ticks[ticks.length - 1];
+// 	let [time, open, high, low, close, volume, closeTime, assetVolume, trades, buyBaseVolume, buyAssetVolume, ignored] = last_tick;
+// 	console.log(symbol+" last close: "+close);
+// }, {limit: 500, endTime: 1514764800000});
 
 /**
  * Calculate data based on buy price
@@ -40,8 +63,8 @@ function calcProfit(buyPrice, sellPrice) {
  */
 function calcTotals(currentBalance) {
   let initialBalance = 0.00291686;
-  let totalProfit = currentBalance - initialBalance;
-  let percentProfit = (currentBalance - initialBalance) / initialBalance *100;
+  let totalProfit = currentBalance - initialBTC;
+  let percentProfit = (currentBalance - initialBTC) / initialBTC *100;
   // let makeProfit = (sellPrice - buyPrice) - (sellPrice * MFEE) - (buyPrice * MFEE);
   document.querySelector('#totalprofit').innerHTML = totalProfit;
   document.querySelector('#percentprofit').innerHTML = percentProfit;
